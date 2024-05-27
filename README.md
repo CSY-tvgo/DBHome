@@ -6,7 +6,7 @@
 ## Introduction
 Feeling unwell while standing near the bus stop for a long time? Especially during the cold winter in Stockholm? Install a departure board at home!  
 
-Actually, without DBHome, you can still check the real-time schedule on the [SL App](https://sl.se/en/in-english/fares--tickets/smart-phone-ticket-app). However, I'm too lazy to click the buttons, and I found that [SL provides API for requesting traffic status](](https://www.trafiklab.se/api/trafiklab-apis/sl/transport/)).  
+Actually, without DBHome, you can still check the real-time schedule on the [SL App](https://sl.se/en/in-english/fares--tickets/smart-phone-ticket-app). However, I'm too lazy to click the buttons, and I found that [SL provides API for requesting traffic status](https://www.trafiklab.se/api/trafiklab-apis/sl/transport/).  
 
 So, I built [DBHome](https://github.com/CSY-tvgo/DBHome). After setting the `SiteId` and the `direction_code`, you can let it always on in your dolce casa to display the real-time schedule.  
 
