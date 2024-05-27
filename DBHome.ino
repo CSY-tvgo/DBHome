@@ -207,51 +207,60 @@ void loop()
 #endif
 
         canvas->fillScreen(BLACK);
-        int printed_num = 0;
-        int to_be_ignored = display_start;
-        for (int i = 0; i < doc["departures"].size(); i++)
+        if (data_num == 0)
         {
-            int dir = doc["departures"][i]["direction_code"];
-            if (dir == direction_code)
+            canvas->setCursor(0, 10);
+            canvas->println(" -No departures now-");
+        }
+        else
+        {
+
+            int printed_num = 0;
+            int to_be_ignored = display_start;
+            for (int i = 0; i < doc["departures"].size(); i++)
             {
-                if (to_be_ignored > 0)
+                int dir = doc["departures"][i]["direction_code"];
+                if (dir == direction_code)
                 {
-                    to_be_ignored--;
-                    continue;
-                }
+                    if (to_be_ignored > 0)
+                    {
+                        to_be_ignored--;
+                        continue;
+                    }
 
-                const char *line_mode = doc["departures"][i]["line"]["transport_mode"];
-                const char *line_id = doc["departures"][i]["line"]["designation"];
-                const char *display = doc["departures"][i]["display"];
-                const char *destination = doc["departures"][i]["destination"];
-                const char *state = doc["departures"][i]["state"];
-                const char *expected = doc["departures"][i]["expected"];
+                    const char *line_mode = doc["departures"][i]["line"]["transport_mode"];
+                    const char *line_id = doc["departures"][i]["line"]["designation"];
+                    const char *display = doc["departures"][i]["display"];
+                    const char *destination = doc["departures"][i]["destination"];
+                    const char *state = doc["departures"][i]["state"];
+                    const char *expected = doc["departures"][i]["expected"];
 
-                canvas->setCursor(0, 10 + 43 * printed_num);
-                canvas->print(line_mode);
-                canvas->print(" ");
-                canvas->print(line_id);
-                canvas->setCursor(118, 10 + 43 * printed_num);
-                canvas->print(display);
+                    canvas->setCursor(0, 10 + 43 * printed_num);
+                    canvas->print(line_mode);
+                    canvas->print(" ");
+                    canvas->print(line_id);
+                    canvas->setCursor(118, 10 + 43 * printed_num);
+                    canvas->print(display);
 
-                canvas->setCursor(0, 24 + 43 * printed_num);
-                canvas->print(destination);
+                    canvas->setCursor(0, 24 + 43 * printed_num);
+                    canvas->print(destination);
 
-                canvas->setCursor(0, 38 + 43 * printed_num);
-                canvas->print(state);
-                canvas->setCursor(104, 38 + 43 * printed_num);
-                canvas->print(expected + 11);
+                    canvas->setCursor(0, 38 + 43 * printed_num);
+                    canvas->print(state);
+                    canvas->setCursor(104, 38 + 43 * printed_num);
+                    canvas->print(expected + 11);
 
-                printed_num++;
-                if (printed_num >= 3)
-                {
-                    break;
+                    printed_num++;
+                    if (printed_num >= 3)
+                    {
+                        break;
+                    }
                 }
             }
-        }
-        for (int i = 0; i < printed_num - 1; i++)
-        {
-            canvas->drawFastHLine(0, 40 + 43 * i, 160, ORANGE);
+            for (int i = 0; i < printed_num - 1; i++)
+            {
+                canvas->drawFastHLine(0, 40 + 43 * i, 160, ORANGE);
+            }
         }
         canvas->flush();
     }
