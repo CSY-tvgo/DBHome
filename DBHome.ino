@@ -167,6 +167,7 @@ void loop()
             canvas->println(httpResponseCode);
             canvas->flush();
         }
+        https.end();
     }
 
 #ifdef BUTTON_ENABLE
